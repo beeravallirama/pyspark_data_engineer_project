@@ -37,6 +37,7 @@ df.groupBy("department") \
          ) \
     .show(truncate=False)
 
+# caluculating sum, avg, max salary
 df.groupBy("department") \
     .agg(sum("salary").alias("sum_salary"), \
          avg("salary").alias("avg_salary"), \
