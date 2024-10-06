@@ -41,7 +41,6 @@ df.groupBy("department") \
     .agg(sum("salary").alias("sum_salary"), \
          avg("salary").alias("avg_salary"), \
          sum("bonus").alias("sum_bonus"), \
-         max("bonus").alias("max_bonus")) \
-         to_timestamp()
+         max("bonus").alias("max_bonus")).to_timestamp() \
     .where(col("sum_bonus") >= 50000) \
-    .show(truncate=False)
+    .show(1000, truncate=False)
