@@ -10,9 +10,9 @@ df = spark.read.text(path)
 
 df_fixed_width = df.withColumn("emp_id", substring("value", 1, 5)) \
                    .withColumn("emp_name", substring("value", 6, 10)) \
-                   .withColumn("salary", substring("value", 16, 6)) \
-                   .withColumn("department", substring("value", 22, 4)) \
-                   .withColumn("year_of_joining", substring("value", 26, 4))
+                   .withColumn("salary", substring("value", 16, 8)) \
+                   .withColumn("department", substring("value", 24, 4)) \
+                   .withColumn("year_of_joining", substring("value", 28, 5))
 
 # Cast columns to appropriate types
 df_fixed_width = df_fixed_width.withColumn("salary", df_fixed_width["salary"].cast("int")) \
