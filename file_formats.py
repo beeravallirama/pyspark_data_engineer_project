@@ -23,7 +23,7 @@ df_fixed_width.show(truncate=False)
 
 
 
-# path = "C:\\\\Users\\\\ANJI\\\\PycharmProjects\\\\pyspark_data_engineer_project\\\\input\\\\emp.json"
+# path = "C:\\Users\\ANJI\\PycharmProjects\\pyspark_data_engineer_project\\input\\emp.json"
 # 
 # df_json = spark.read.json(path)
 # 
@@ -32,13 +32,13 @@ df_fixed_width.show(truncate=False)
 # df_json.printSchema()
 # df_json.show(truncate = False)
 
-# df_json = spark.read.json("C:\\\\Users\\\\ANJI\\\\PycharmProjects\\\\pyspark_data_engineer_project\\\\input\\\\emp.json")
+# df_json = spark.read.json("C:\\Users\\ANJI\\PycharmProjects\\pyspark_data_engineer_project\\input\\emp.json")
 
 # df_json.prientSchema()
 # df_json.show()
 
 
-# df_csv = spark.read.csv("C:\\\\Users\\\\ANJI\\\\PycharmProjects\\\\pyspark_data_engineer_project\\\\input\\\\sample_emp.csv",header = True, inferSchema = True)
+# df_csv = spark.read.csv("C:\\Users\\ANJI\\PycharmProjects\\pyspark_data_engineer_project\\input\\sample_emp.csv",header = True, inferSchema = True)
 # 
 # df_csv.printSchema()
 # root
