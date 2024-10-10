@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 
-from pyspark.sql import functions as F
+from pyspark.sql import functions
 
 Spark = SparkSession.builder.appName("sriram").getOrCreate()
 
@@ -31,21 +31,21 @@ df.show()
 #
 # df_filtered = df.filter(df["loc"] != 'hyd').show()
 
-df_filtered = df.filter(df["dept_id"].isin(10)).show()
-
-df_filtered = df.filter(df["name"].like("%ram%")).show()
-
-df_filtered = df.filter(df["name"].like("bra%")).show()
-
-df_filtered = df.filter(df["name"].rlike("^[sn]")).show()
-
-df_filtered = df.filter(df["loc"].isNull()).show()
-
-df_filtered = df.filter(df["loc"].isNotNull()).show()
-
-df_filtered = df.filter(df["sal"].between(2000,40000)).show()
-
-df_filtered = df.filter(F.lower(df["loc"]) == "hyd").show()
+# df_filtered = df.filter(df["dept_id"].isin(10)).show()
+#
+# df_filtered = df.filter(df["name"].like("%ram%")).show()
+#
+# df_filtered = df.filter(df["name"].like("bra%")).show()
+#
+# df_filtered = df.filter(df["name"].rlike("^[sn]")).show()
+#
+# df_filtered = df.filter(df["loc"].isNull()).show()
+#
+# df_filtered = df.filter(df["loc"].isNotNull()).show()
+#
+# df_filtered = df.filter(df["sal"].between(2000,40000)).show()
+#
+# df_filtered = df.filter(F.lower(df["loc"]) == "hyd").show()
 
 df_filtered = df.filter((df["sal"]>2000) & (df["dept_id"] ==30)).show()
 
