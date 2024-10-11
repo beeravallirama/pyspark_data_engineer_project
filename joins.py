@@ -29,6 +29,8 @@ result5_left_semi = df1.join(df2,df1["id"] == df2["id"], "left_semi")
 
 result6_left_anti = df1.join(df2,df1["id"] == df2["id"], "left_anti")
 
+result7_cross_join =df1.crossJoin(df2)
+
 
 result1_inner.show()
 # +---+---+
@@ -78,6 +80,7 @@ result6_left_anti.show()
 # |  3|
 # +---+
 
+result7_cross_join.show()
 
 
 
