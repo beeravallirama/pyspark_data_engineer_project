@@ -40,4 +40,4 @@
 # import snowflake.connector
 # print(snowflake.connector.__version__)
 
-! pip install snowflake-connector-python
+
