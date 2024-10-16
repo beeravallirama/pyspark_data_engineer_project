@@ -1,65 +1,28 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import count
-from pyspark.sql.types import StructType,StructField,IntegerType,StringType
 
-from ex_1 import schema
+from pyspark.sql.functions import col, row_number, rank, dense_rank
 
-spark = SparkSession.builder.appName("EmployeeData").getOrCreate()
-# Define the Schema
-schema = StructType([
-    StructField("emp_id",IntegerType(),True),
-    StructField("emp_name",StringType(),True),
-    StructField("dept_id",IntegerType(),True)
-])
-data = [
-    (101, "James Smith", 10),
-    (102, "Michael Rose", 20),
-    (103, "Robert Williams", 10),
-    (104, "Maria Jones", 30),
-    (105, "Jen Brown", 20)
-]
+from pyspark.sql.window import Window
 
-# create schema
-schema = ["emp_id", "emp_name", "dept_id"]
+spark = SparkSession.builder.appName("sriram").getOrCreate()
 
-# Step 4: Create the DataFrame
-df = spark.createDataFrame(data, schema=schema)
+data = [(1,), (2,), (3,), (4,), (5,), (5,), (6,)]
 
-# Step 5: Group by dept_id and count the number of employees in each department
-result_df = df.groupBy("dept_id").agg(count("emp_id").alias("employee_count"))
+columns = ["id"]
 
-# Step 5: Show the DataFrame
+df = spark.createDataFrame(data, columns)
 
-df.show()
+window_spec = Window.orderBy(col("id"))
 
-# Optional: Print the schema to confirm
-df.printSchema()
+df_with_row_number = df.withColumn("row_number", row_number().over(window_spec))
 
+df_with_rank = df.withColumn("rank",rank().over(window_spec))
 
+df_with_row_number.show()
 
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import count  # Make sure to import the count function
+df_with_rank.show()
 
-# Step 1: Initialize Spark session
-spark = SparkSession.builder.appName("DataFrameExample").getOrCreate()
+df_dense_rank = df.withColumn("dense_rank",dense_rank().over(window_spec))
 
-# Step 2: Create the data
-data = [
-    (101, "James Smith", 10),
-    (102, "Michael Rose", 20),
-    (103, "Robert Williams", 10),
-    (104, "Maria Jones", 30),
-    (105, "Jen Brown", 20)
-]
+df_dense_rank.show()
 
-# Step 3: Define the schema for the DataFrame
-schema = ["emp_id", "emp_name", "dept_id"]
-
-# Step 4: Create the DataFrame
-df = spark.createDataFrame(data, schema=schema)
-
-# Step 5: Group by dept_id and count the number of employees in each department
-result_df = df.groupBy("dept_id").agg(count("emp_id").alias("employee_count"))
-
-# Step 6: Show the result
-result_df.show()
